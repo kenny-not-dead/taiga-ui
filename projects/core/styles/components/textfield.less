@@ -30,6 +30,10 @@ tui-textfield {
     input,
     select {
         font: var(--tui-font-text-m);
+
+        &[inputmode='none'] {
+            caret-color: transparent;
+        }
     }
 
     &[data-size='s'] {
@@ -137,7 +141,7 @@ tui-textfield {
 
     &:has(label:not(:empty)) {
         .t-template,
-        input:defined,
+        input:first-of-type,
         select:defined {
             padding-top: calc(var(--t-height) / 3);
 
@@ -151,7 +155,7 @@ tui-textfield {
     // TODO: Fallback until Safari 15.4
     &._with-label {
         .t-template,
-        input:defined,
+        input:first-of-type,
         select:defined {
             padding-top: calc(var(--t-height) / 3);
 
@@ -183,12 +187,12 @@ tui-textfield {
         color: var(--tui-text-primary);
     }
 
-    &._with-template input,
+    &._with-template input:first-of-type,
     &._with-template select {
         color: transparent !important;
     }
 
-    input:defined,
+    input:first-of-type,
     select:defined {
         pointer-events: auto;
         background: transparent;
@@ -287,6 +291,7 @@ tui-textfield {
     }
 
     .t-clear {
+        z-index: 1;
         display: none;
         pointer-events: auto;
     }

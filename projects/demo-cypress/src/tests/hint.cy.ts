@@ -14,7 +14,7 @@ describe('TuiHint', () => {
         imports: [NgIf],
         template: `
             <ng-container *ngIf="!hideElement">
-                <ng-content></ng-content>
+                <ng-content />
             </ng-container>
         `,
         changeDetection: ChangeDetectionStrategy.OnPush,
@@ -30,7 +30,12 @@ describe('TuiHint', () => {
         template: `
             <tui-root>
                 <my-host [hideElement]="hide">
-                    <button tuiHint="hint">button</button>
+                    <button
+                        tuiHint="hint"
+                        type="button"
+                    >
+                        button
+                    </button>
                 </my-host>
             </tui-root>
         `,
