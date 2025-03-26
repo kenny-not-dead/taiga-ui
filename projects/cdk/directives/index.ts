@@ -8,6 +8,7 @@ export * from '@taiga-ui/cdk/directives/element';
 export * from '@taiga-ui/cdk/directives/focus-trap';
 export * from '@taiga-ui/cdk/directives/font-size';
 export * from '@taiga-ui/cdk/directives/for';
+export * from '@taiga-ui/cdk/directives/fullscreen';
 export * from '@taiga-ui/cdk/directives/high-dpi';
 export * from '@taiga-ui/cdk/directives/hovered';
 export * from '@taiga-ui/cdk/directives/item';

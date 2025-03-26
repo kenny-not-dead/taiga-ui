@@ -1,5 +1,5 @@
 import {Clipboard} from '@angular/cdk/clipboard';
-import {NgForOf, NgIf, NgTemplateOutlet} from '@angular/common';
+import {NgForOf, NgIf} from '@angular/common';
 import {ChangeDetectionStrategy, Component, inject, Input, signal} from '@angular/core';
 import {toSignal} from '@angular/core/rxjs-interop';
 import {RouterLink, RouterLinkActive} from '@angular/router';
@@ -13,6 +13,7 @@ import {
 } from '@taiga-ui/addon-doc/tokens';
 import type {TuiRawLoaderContent} from '@taiga-ui/addon-doc/types';
 import {tuiRawLoadRecord} from '@taiga-ui/addon-doc/utils';
+import {TuiFullscreen} from '@taiga-ui/cdk/directives/fullscreen';
 import {TuiLet} from '@taiga-ui/cdk/directives/let';
 import {TuiMapperPipe} from '@taiga-ui/cdk/pipes/mapper';
 import type {TuiContext} from '@taiga-ui/cdk/types';
@@ -23,11 +24,7 @@ import {TuiLoader} from '@taiga-ui/core/components/loader';
 import {TuiTabs} from '@taiga-ui/kit/components/tabs';
 import {TUI_COPY_TEXTS} from '@taiga-ui/kit/tokens';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
-import {
-    PolymorpheusComponent,
-    PolymorpheusOutlet,
-    PolymorpheusTemplate,
-} from '@taiga-ui/polymorpheus';
+import {PolymorpheusComponent, PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 import {BehaviorSubject, map, ReplaySubject, switchAll, switchMap} from 'rxjs';
 
 import {TuiDocCode} from '../code';
@@ -40,14 +37,13 @@ import {TuiDocExampleGetTabsPipe} from './example-get-tabs.pipe';
     imports: [
         NgForOf,
         NgIf,
-        NgTemplateOutlet,
         PolymorpheusOutlet,
-        PolymorpheusTemplate,
         RouterLink,
         RouterLinkActive,
         TuiButton,
         TuiDocCode,
         TuiDocExampleGetTabsPipe,
+        TuiFullscreen,
         TuiLet,
         TuiLink,
         TuiLoader,
@@ -89,6 +85,8 @@ export class TuiDocExample {
     protected readonly defaultTabIndex = 0;
     protected readonly defaultTab = this.texts[this.defaultTabIndex];
     protected activeItemIndex = this.defaultTabIndex;
+
+    protected readonly fullscreen = signal(false);
 
     protected readonly copy = toSignal(this.copyTexts$.pipe(map(([copy]) => copy)), {
         initialValue: '',
