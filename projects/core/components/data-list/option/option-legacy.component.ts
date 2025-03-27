@@ -15,14 +15,19 @@ import {TuiWithIcons} from '@taiga-ui/core/directives/icons';
 import type {PolymorpheusContent} from '@taiga-ui/polymorpheus';
 import {PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
 
-import {TuiDataListComponent} from './data-list.component';
-import type {TuiDataListHost} from './data-list.tokens';
-import {TUI_DATA_LIST_HOST, TUI_OPTION_CONTENT} from './data-list.tokens';
+import {TuiDataListComponent} from '../data-list.component';
+import type {TuiDataListHost} from '../data-list.tokens';
+import {TUI_DATA_LIST_HOST} from '../data-list.tokens';
+import {TUI_OPTION_CONTENT} from './option-content';
 
-// TODO: Consider all use cases for aria roles
+/**
+ * TODO(v5): delete
+ * @deprecated use `<button tuiOption new />` / `<a tuiOption new /> / `<label tuiOption new /> instead
+ */
 @Component({
     standalone: true,
-    selector: 'button[tuiOption], a[tuiOption], label[tuiOption]',
+    selector:
+        'button[tuiOption]:not([new]), a[tuiOption]:not([new]), label[tuiOption]:not([new])',
     imports: [PolymorpheusOutlet],
     template: `
         <ng-container *polymorpheusOutlet="content || t as text; context: {$implicit: t}">
@@ -82,7 +87,12 @@ export class TuiOption<T = unknown> implements OnDestroy {
     }
 
     protected onMouseMove(): void {
-        if (!this.isMobile && !tuiIsNativeFocused(this.el) && this.dataList) {
+        if (
+            !this.isMobile &&
+            !tuiIsNativeFocused(this.el) &&
+            this.dataList &&
+            this.el.closest('[tuiDataListDropdownManager]')
+        ) {
             this.el.focus({preventScroll: true});
         }
     }

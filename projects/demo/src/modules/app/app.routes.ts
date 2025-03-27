@@ -470,6 +470,11 @@ export const ROUTES: Routes = [
         title: 'InputSlider',
     }),
     route({
+        path: DemoRoute.InputSliderLegacy,
+        loadComponent: async () => import('../components/input-slider-legacy'),
+        title: 'InputSlider [deprecated]',
+    }),
+    route({
         path: DemoRoute.InputTag,
         loadComponent: async () => import('../components/input-tag'),
         title: 'InputTag',
@@ -585,8 +590,8 @@ export const ROUTES: Routes = [
         loadComponent: async () => import('../components/calendar-range'),
     }),
     route({
-        path: DemoRoute.Select,
-        loadComponent: async () => import('../components/select'),
+        path: DemoRoute.SelectLegacy,
+        loadComponent: async () => import('../components/select-legacy'),
         title: 'Select',
     }),
     route({
