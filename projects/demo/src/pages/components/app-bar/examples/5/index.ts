@@ -1,13 +1,12 @@
 import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import {changeDetection} from '@demo/emulate/change-detection';
 import {encapsulation} from '@demo/emulate/encapsulation';
 import {TuiPlatform} from '@taiga-ui/cdk';
+import {TUI_OPTIONS, TuiCell, TuiTitle} from '@taiga-ui/core';
 import {TuiAvatar, TuiSegmented} from '@taiga-ui/kit';
 import {TuiAppBar, TuiAppBarBack, TuiDynamicHeader, TuiHeader} from '@taiga-ui/layout';
 import {PolymorpheusComponent, PolymorpheusOutlet} from '@taiga-ui/polymorpheus';
-
-import {TUI_OPTIONS, TuiCell, TuiTitle} from '@taiga-ui/core';
-import {FormsModule} from '@angular/forms';
 
 @Component({
     imports: [
